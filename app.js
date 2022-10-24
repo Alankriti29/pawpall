@@ -13,10 +13,10 @@ var db = mysql.createConnection({
 db.connect(function(err) {
     if(err){
         throw err;
-    }
+    } //signup:
     console.log('MySQL connected...');
-        var pupid=100;
-        var pupname = pName;
+        var pupid=209;
+        var pupname = "Linda";
         var pupbreed = 'german shephard';
         var pupage = 4;
         var location="noida";
@@ -28,7 +28,37 @@ db.connect(function(err) {
         var sql="INSERT into profile values ("+pupid+",'"+pupname+"','"+ pupbreed +"', "+ pupage + ", '"+ location +"','"+username+"','" +pwd+"','"+ownername+"',"+ownerage+","+phone+")";
             db.query(sql,function(err,result){
               if(err) throw err;
-              console.log("record created"); 
+              console.log("record created in profile"); 
+    });
+    //playmates:
+    var pet1id=1, pet2id=2, R="F";
+    var sql="INSERT into relation values ("+pet1id+","+pet2id+",'"+R+"')";
+    db.query(sql,function(err,result){
+        if(err) throw err;
+        console.log("record created in relation"); 
+    });
+    if(R=="F")
+    var sql1="UPDATE relation SET status='F' where Pet2="+pet2id;
+    if(R=="D")
+    var sql1="Delete from relation where Pet2="+pet2id;
+    db.query(sql1,function(err,result){
+        if(err) throw err;
+        console.log("record updated in relation"); 
+    });
+    //petcare:
+    var petid1=1, petid2=2, Req="A"
+    var sql="INSERT into petcare values ("+petid1+","+petid2+",'"+Req+"')";
+    db.query(sql,function(err,result){
+        if(err) throw err;
+        console.log("record created in relation"); 
+    });
+    if(Req=="A")
+    var sql1="UPDATE request SET status='A' where Pet2="+petid2;
+    if(Req=="D")
+    var sql1="Delete from request where Pet2="+petid2;
+    db.query(sql1,function(err,result){
+        if(err) throw err;
+        console.log("record updated in request"); 
     });
 }) ;
 
